@@ -16,6 +16,27 @@ $ larynx \
     'Hoe laat is het?'
 ```
 
+### Docker
+
+Run a web server at http://localhost:5002
+
+```sh
+$ docker run -it -p 5002:5002 \
+    --device /dev/snd:/dev/snd \
+    rhasspy/larynx:nl-rdh-1
+```
+
+Endpoints:
+
+* `/api/tts` - returns WAV audio for text
+    * `GET` with `?text=...`
+    * `POST` with text body
+* `/api/phonemize` - returns phonemes for text
+    * `GET` with `?text=...`
+    * `POST` with text body
+* `/process` - compatibility endpoint to emulate [MaryTTS](http://mary.dfki.de/)
+    * `GET` with `?INPUT_TEXT=...`
+
 ## Model Details
 
 * Type: [Glow-TTS](https://arxiv.org/abs/2005.11129)
